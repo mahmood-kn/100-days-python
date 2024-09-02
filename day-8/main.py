@@ -35,7 +35,7 @@ import math
 
 # day project
 #            0    1    2    3    4
-alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z','a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 direction_options=['encode','decode']
 direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
 if not direction in direction_options:
@@ -44,34 +44,19 @@ if not direction in direction_options:
 text = input("Type your message:\n").lower()
 shift = int(input("Type the shift number:\n"))
 
-def encrypt(plain_text,shift_amount):
-  encrypted=''
-  for letter in plain_text:
-    if letter in alphabet:
-      index=alphabet.index(letter)
-      if index+shift_amount>=len(alphabet):
-        can_go=len(alphabet)-1 -index
-        should_go_from_begin=shift_amount-can_go-1
-        encrypted+=alphabet[should_go_from_begin]
-        
-      else:
-        encrypted+=alphabet[index+shift_amount]
-    else:
-      encrypted+=letter
-      
-  print(f'The encoded text is: {encrypted}')
-
-def decrypt(plain_text,shift_amount):
-  decrypted=''
-  for letter in plain_text:
+def ceasar(text,shift,direction):
+  end_text=''
+  for letter in text:
     if  letter in alphabet:
-      index=alphabet.index(letter)
-      decrypted+=alphabet[index-shift_amount]
+      position=alphabet.index(letter)
+      new_position=0
+      if direction=='encode':
+        new_position=position+shift
+      elif direction=='decode':
+        new_position=position-shift
+      end_text+=alphabet[new_position]
     else:
-      decrypted+=letter
-  print(f'The decoded text is: {decrypted}')
+      end_text+=letter
+  print(f'The {direction}d text is: {end_text}')
 
-if direction=='encode':
-  encrypt(plain_text=text,shift_amount=shift)
-elif direction=='decode':
-  decrypt(plain_text=text,shift_amount=shift)
+ceaser(text,shift,direction)
