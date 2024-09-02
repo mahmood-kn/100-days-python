@@ -46,17 +46,16 @@ shift = int(input("Type the shift number:\n"))
 
 def ceasar(text,shift,direction):
   end_text=''
+  if direction=='decode':
+    shift *=-1
   for letter in text:
     if  letter in alphabet:
       position=alphabet.index(letter)
-      new_position=0
-      if direction=='encode':
-        new_position=position+shift
-      elif direction=='decode':
-        new_position=position-shift
+    
+      new_position=position+shift
       end_text+=alphabet[new_position]
     else:
       end_text+=letter
   print(f'The {direction}d text is: {end_text}')
 
-ceaser(text,shift,direction)
+ceasar(text,shift,direction)
