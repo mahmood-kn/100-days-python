@@ -1,5 +1,5 @@
 import math
-
+from art import logo 
 # exercise 1
 
 # test_h= int(input("Height of wall: "))
@@ -37,12 +37,8 @@ import math
 #            0    1    2    3    4
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z','a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 direction_options=['encode','decode']
-direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
-if not direction in direction_options:
-  print("Wrong input")
-  exit()
-text = input("Type your message:\n").lower()
-shift = int(input("Type the shift number:\n"))
+print(logo)
+
 
 def ceasar(text,shift,direction):
   end_text=''
@@ -51,11 +47,23 @@ def ceasar(text,shift,direction):
   for letter in text:
     if  letter in alphabet:
       position=alphabet.index(letter)
-    
       new_position=position+shift
       end_text+=alphabet[new_position]
     else:
       end_text+=letter
   print(f'The {direction}d text is: {end_text}')
 
-ceasar(text,shift,direction)
+should_continue=True
+while should_continue:
+  direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
+  if not direction in direction_options:
+    print("Wrong input")
+    exit()
+  text = input("Type your message:\n").lower()
+  shift = int(input("Type the shift number:\n"))
+  shift=shift%26
+  ceasar(text,shift,direction)
+  run_again=input("Type 'yes' if you want to go again, otherwise type 'no'.\n").lower()
+  if run_again=='no':
+    should_continue=False
+    print("GoodBye")
