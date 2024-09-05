@@ -48,7 +48,7 @@ def check_user_status(user,pc):
     else:
       print(f'You win, Blackjack, Computer cards:{pc} with score:{sum(pc)}')
   elif user_score==21 and len(user)>2:
-    check_pc_status(pc)
+    check_pc_status(pc,user_score)
   
   if user_score>21:
     print(f'Bust, score:{user_score}')
