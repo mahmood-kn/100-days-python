@@ -83,6 +83,9 @@ while continue_play:
     print(f"Your cards:{user_cards}, current score:{user_score}")
    
     print(f"Computer's first cards:{pc_cards[0]}")
+    if 11 in pc_cards and pc_score>21:
+      index=pc_cards.index(11)
+      pc_cards[index]=1
     check_user_status(user_cards,pc_cards)
   elif want_play=='n':
     continue_play=False
