@@ -1,0 +1,33 @@
+# snack game
+from turtle import Screen,Turtle
+from typing import List
+import time
+from snake import Snake
+
+screen = Screen()
+screen.setup(width=600,height=600)
+screen.bgcolor("black")
+screen.title("My Snake Game")
+screen.tracer(0)
+
+segments:List[Turtle]=[]
+game_is_on=True
+
+snake=Snake()
+
+screen.listen()
+screen.onkey(snake.up,"Up")
+screen.onkey(snake.down,"Down")
+screen.onkey(snake.left,"Left")
+screen.onkey(snake.right,"Right")
+    
+screen.update()
+    
+while game_is_on:
+    screen.update()
+    time.sleep(0.1)
+    snake.move()
+
+
+
+screen.exitonclick()
